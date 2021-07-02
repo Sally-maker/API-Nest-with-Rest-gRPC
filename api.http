@@ -1,0 +1,36 @@
+POST http://localhost:3000/products
+Content-type: application/json
+
+{
+    "name": "osaddas",
+    "price":2334
+}
+
+### 
+GET http://localhost:3000/products
+
+
+### 
+GET http://localhost:3000/products/1
+
+###
+PATCH  http://localhost:3000/products/1
+Content-type: application/json
+
+{
+    "name": "ALTERADO",
+    "price": 1324
+}
+
+###
+DELETE  http://localhost:3000/products/1 
+
+
+###
+POST http://localhost:3000/product-grpc-clients
+Content-type: application/json
+
+{
+    "name": "osaddas",
+    "price":2334
+}

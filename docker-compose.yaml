@@ -1,0 +1,28 @@
+version: '3'
+
+services: 
+  app:
+    build: . 
+    entrypoint: dockerize -wait tcp://db:5432 -timeout 40s ./.docker/entrypoint.sh
+    container_name: imersao-esquenta-fullcycle
+    ports: 
+      - 3000:3000
+    volumes: 
+      - .:/home/node/app
+    depends_on:
+      - db
+  db:
+    build: .docker/postgres
+    container_name: imersao-fullcycle-db
+    restart: always
+    tty: true
+    environment: 
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=store
+    volumes: 
+      - .docker/dbdata:/var/lib/postgresql/data
+      
+  grpc-test:
+    image: gusaul/grpcox:latest
+    ports: 
+      - 6969:6969
